@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@500&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-bg {
+    background-image: linear-gradient(45deg,
+            hsl(208deg 33% 21%) 0%,
+            hsl(208deg 34% 24%) 11%,
+            hsl(209deg 35% 26%) 22%,
+            hsl(209deg 35% 29%) 33%,
+            hsl(209deg 36% 32%) 44%,
+            hsl(209deg 36% 34%) 56%,
+            hsl(210deg 36% 37%) 67%,
+            hsl(210deg 36% 40%) 78%,
+            hsl(210deg 36% 43%) 89%,
+            hsl(211deg 36% 46%) 100%);
+}
+
+.eng-font {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.custom-border {
+    position: relative;
+    padding: 10px;
+    /* Adjust as needed */
+    border-radius: 12px;
+    /* Adjust as needed */
+}
+
+.custom-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #ff6b6b, #ffd700, #8a2be2, #00c9ff);
+    background-size: 300% 300%;
+    animation: gradient-animation 3s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
