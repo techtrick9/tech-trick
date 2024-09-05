@@ -6,6 +6,8 @@ import { FaTiktok } from "react-icons/fa";
 import { BsYoutube } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { FaTelegram } from "react-icons/fa6";
+import { IoArrowUpCircle } from "react-icons/io5";
+
 import { BlogGridComponent } from "../components";
 import { useState } from "react";
 import blogs from "../data/blog.json";
@@ -17,7 +19,7 @@ const HomePage = () => {
     setCategory(value);
   };
   return (
-    <div className="h-full relative py-5 px-3">
+    <div id="select" className="h-full relative py-5 px-3">
       <div className="flex items-center">
         <div className=" flex gap-4 items-center font-mono">
           <Link to="/">
@@ -28,7 +30,7 @@ const HomePage = () => {
           </h1>
         </div>
       </div>
-      <div className="max-w-[400px] mx-auto my-10 fixed start-0 end-0 top-[55px] w-full px-3">
+      <div className="max-w-[400px] mx-auto my-5 w-full px-3">
         <Select
           label="အမျိုးအစားများ"
           className="max-w-full"
@@ -40,6 +42,16 @@ const HomePage = () => {
             </SelectItem>
           ))}
         </Select>
+      </div>
+      <div className="fixed bottom-[60px] md:bottom-3 start-3 end-3 flex justify-center  rounded-lg items-center bg-[#DFDFDF] z-10">
+        <a href="#select" className="flex gap-7 md:gap-10">
+          <IoArrowUpCircle
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="w-[38px] h-[38px] cursor-pointer animate-bounce"
+          />
+        </a>
       </div>
       <div className="fixed bottom-3 end-3 rounded-lg items-center bg-[#DFDFDF] z-10">
         <div className="flex gap-7 md:gap-10">
@@ -57,7 +69,7 @@ const HomePage = () => {
           </Link>
         </div>
       </div>
-      <div className="w-fit mx-auto mt-[100px]">
+      <div className="w-fit mx-auto mt-10 mb-40">
         <BlogGridComponent blogs={blogs} category={category} />
       </div>
     </div>
