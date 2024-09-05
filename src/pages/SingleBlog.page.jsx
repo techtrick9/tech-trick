@@ -98,16 +98,16 @@ const SingleBlogPage = () => {
               Comment မန့်ရန်
             </p>
             <div className="flex gap-5 md:gap-7 md:ms-[25px]">
-              <Link target="_blank" to="https://bit.ly/4cUxHvs">
+              <Link target="_blank" to={post.tiktok}>
                 <FaTiktok className="w-[38px] h-[38px]" />
               </Link>
-              <Link target="_blank" to="https://bit.ly/4gauJWs">
+              <Link target="_blank" to={post.youtube}>
                 <BsYoutube className="w-[38px] h-[38px]" />
               </Link>
-              <Link target="_blank" to="https://bit.ly/3Xk9U2m">
+              <Link target="_blank" to={post.facebook}>
                 <BsFacebook className="w-[38px] h-[38px]" />
               </Link>
-              <Link target="_blank" to="https://bit.ly/3X9XrOx">
+              <Link target="_blank" to={post.telegram}>
                 <FaTelegram className="w-[38px] h-[38px]" />
               </Link>
             </div>
