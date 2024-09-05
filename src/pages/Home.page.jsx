@@ -11,6 +11,8 @@ import { IoArrowUpCircle } from "react-icons/io5";
 import { BlogGridComponent } from "../components";
 import { useState } from "react";
 import blogs from "../data/blog.json";
+import GoogleAd from "../ads/GoogleAd";
+import AdUnit from "../ads/AdUnit";
 
 const HomePage = () => {
   const [category, setCategory] = useState(null);
@@ -20,6 +22,7 @@ const HomePage = () => {
   };
   return (
     <div id="select" className="h-full relative py-5 px-3">
+      <GoogleAd />
       <div className="flex items-center">
         <div className=" flex gap-4 items-center font-mono">
           <Link to="/">
