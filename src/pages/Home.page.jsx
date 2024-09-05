@@ -46,7 +46,7 @@ const HomePage = () => {
           ))}
         </Select>
       </div>
-      <div className="fixed bottom-[60px] md:bottom-3 start-3 end-3 flex justify-center  rounded-lg items-center bg-[#DFDFDF] z-10">
+      <div className="fixed bottom-[60px] md:bottom-3 start-3 end-3 flex justify-center  rounded-lg items-center z-10">
         <a href="#select" className="flex gap-7 md:gap-10">
           <IoArrowUpCircle
             onClick={() => {
