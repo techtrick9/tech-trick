@@ -42,7 +42,7 @@ const HomePage = () => {
         </Select>
       </div>
       <div className="fixed bottom-3 end-3 rounded-lg items-center bg-[#DFDFDF] z-10">
-        <div className="flex gap-7 md:gap-10 custom-border">
+        <div className="flex gap-7 md:gap-10">
           <Link target="_blank" to="https://bit.ly/4cUxHvs">
             <FaTiktok className="w-[38px] h-[38px]" />
           </Link>
