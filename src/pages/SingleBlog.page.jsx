@@ -2,14 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/favicon.png";
 import { FaTiktok } from "react-icons/fa";
-import { BsYoutube } from "react-icons/bs";
-import { BsFacebook } from "react-icons/bs";
+import { BsYoutube, BsFacebook } from "react-icons/bs";
 import { FaTelegram } from "react-icons/fa6";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import blogs from "../data/blog.json";
-import Plyr from "plyr"; // Import Plyr
-import { useNavigate } from "react-router-dom";
+import videojs from "video.js";
+import "video.js/dist/video-js.css"; // Import Video.js CSS
 
 const SingleBlogPage = () => {
   const { slug } = useParams();
@@ -21,23 +20,28 @@ const SingleBlogPage = () => {
     if (!post) {
       nav("*");
     }
-    // Initialize Plyr for each video
+    // Initialize Video.js for each video
     videoRefs.current.forEach((video) => {
       if (video) {
-        new Plyr(video, {
-          controls: [
-            "play-large",
-            "play",
-            "progress",
-            "volume",
-            "fullscreen",
-            "settings",
-          ], // Include 'play-large'
-          settings: ["quality", "speed"],
-          pip: false, // Disable Picture-in-Picture
+        videojs(video, {
+          controls: true,
+          autoplay: false,
+          preload: "auto",
+          responsive: true,
+          fluid: true,
         });
       }
     });
+
+    // Cleanup
+    return () => {
+      videoRefs.current.forEach((video) => {
+        if (video) {
+          const player = videojs(video);
+          player.dispose();
+        }
+      });
+    };
   }, [post, nav]);
 
   return (
@@ -74,27 +78,29 @@ const SingleBlogPage = () => {
             {post.title}
           </h1>
           {post.videos.map((video, index) => (
-            <div className="mt-10" key={index}>
+            <div className="mt-10 max-w-full" key={index}>
               <h1 className="text-3xl font-noto-sans-myanmar font-semibold text-center mb-3">
-                {" "}
                 အပိုင်း {index + 1}
               </h1>
-              <video
-                ref={(el) => (videoRefs.current[index] = el)}
-                className="block mx-auto"
-                controls
-                controlsList="nodownload noremoteplayback"
-              >
-                <source src={video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <div className="w-full">
+                <video
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  className="video-js vjs-default-skin max-w-full"
+                  controls
+                  preload="auto"
+                  data-setup="{}"
+                >
+                  <source src={video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
           ))}
           <p className="mt-10 text-lg md:text-xl leading-9 font-noto-sans-myanmar font-semibold text-center">
             {post.iWantToSay}
           </p>
-          <div className="flex flex-col gap-4  items-center my-8 md:flex-row">
-            <p className=" text-xl leading-9 font-noto-sans-myanmar font-semibold">
+          <div className="flex flex-col gap-4 items-center my-8 md:flex-row">
+            <p className="text-xl leading-9 font-noto-sans-myanmar font-semibold">
               Comment မန့်ရန်
             </p>
             <div className="flex gap-5 md:gap-7 md:ms-[25px]">
